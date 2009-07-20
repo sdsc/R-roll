@@ -14,6 +14,9 @@
 
   <changelog>
   $Log$
+  Revision 1.1  2009/07/20 17:48:10  jhayes
+  Install R on client rather than devel nodes.
+
   Revision 1.1  2009/06/19 17:15:24  jhayes
   Added missing file.
 

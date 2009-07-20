@@ -13,6 +13,9 @@
 
   <changelog>
   $Log$
+  Revision 1.3  2009/07/20 17:48:10  jhayes
+  Install R on client rather than devel nodes.
+
   Revision 1.2  2009/06/19 16:14:30  jhayes
   Add R to the login node.
 
@@ -24,8 +27,8 @@
 
   </changelog>
 
-  <edge from="devel">
-    <to>R-devel</to>
+  <edge from="client">
+    <to>R-client</to>
   </edge>
 
 </graph>
