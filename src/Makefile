@@ -54,16 +54,8 @@
 # @Copyright@
 #
 # $Log$
-# Revision 1.1  2009/08/09 20:31:19  jhayes
-# Build R from source so that it can be installed in /opt/R and packages can be
-# built and added during the roll building process, rather than during cluster
-# install.
-#
-# Revision 1.2  2009/04/01 19:15:34  phil
-# Adjustments to build on Solaris
-#
-# Revision 1.1  2009/02/05 18:36:05  bruno
-# added
+# Revision 1.2  2009/10/18 01:41:31  jhayes
+# Release for clean-up.
 #
 #
 

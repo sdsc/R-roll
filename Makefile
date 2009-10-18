@@ -55,11 +55,8 @@
 # @Copyright@
 #
 # $Log$
-# Revision 1.1  2009/04/20 19:40:52  jhayes
-# Added R as an example for roll building.
-#
-# Revision 1.1  2009/02/05 18:36:05  bruno
-# added
+# Revision 1.2  2009/10/18 01:41:30  jhayes
+# Release for clean-up.
 #
 #
 
@@ -69,4 +66,3 @@ default:	roll
 
 clean::
 	rm -f _arch bootstrap.py
-

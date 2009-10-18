@@ -55,35 +55,8 @@
 # @Copyright@
 #
 # $Log$
-# Revision 1.1  2009/08/09 20:31:19  jhayes
-# Build R from source so that it can be installed in /opt/R and packages can be
-# built and added during the roll building process, rather than during cluster
-# install.
-#
-# Revision 1.8  2009/06/09 21:45:38  jhayes
-# Correction to installation of cgi.cfg.
-#
-# Revision 1.7  2009/04/28 18:23:47  jhayes
-# Remove disused include.
-#
-# Revision 1.6  2009/04/15 16:50:26  jhayes
-# Allow specification of per-service monitoring timeperiod.  Remove copying of
-# sample configuration to target.
-#
-# Revision 1.5  2009/03/27 22:58:28  jhayes
-# Debugging.
-#
-# Revision 1.4  2009/03/26 21:26:50  jhayes
-# Begin working on using rocks command to manipulate nagios config.
-#
-# Revision 1.3  2009/03/13 19:07:55  jhayes
-# Clean up node XML and Makefile.
-#
-# Revision 1.2  2009/03/12 18:44:35  jhayes
-# Initial version working on triton.
-#
-# Revision 1.1  2009/02/05 18:36:05  bruno
-# added
+# Revision 1.2  2009/10/18 01:41:31  jhayes
+# Release for clean-up.
 #
 #
 
@@ -93,7 +66,6 @@ REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 
 build:
-	yum -y install curl-devel
 	yum -y install readline-devel
 	tar zxvf $(NAME)-$(VERSION).tar.gz
 	( \
