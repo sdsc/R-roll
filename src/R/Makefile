@@ -54,11 +54,6 @@
 #
 # @Copyright@
 #
-# $Log$
-# Revision 1.2  2009/10/18 01:41:31  jhayes
-# Release for clean-up.
-#
-#
 
 PKGROOT = /opt/R
 REDHAT.ROOT = $(PWD)/../../

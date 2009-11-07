@@ -53,11 +53,6 @@
 # 
 # @Copyright@
 #
-# $Log$
-# Revision 1.2  2009/10/18 01:41:31  jhayes
-# Release for clean-up.
-#
-#
 
 SRCDIRS = `find . -type d -maxdepth 1 \
 	-not -name CVS \

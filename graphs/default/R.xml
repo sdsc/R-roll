@@ -2,20 +2,21 @@
 
 <graph>
 
-  <description>
-  The R Project for Statistical Computing
-  </description>
+<description>
+The R Project for Statistical Computing
+http://www.r-project.org
+</description>
 
-  <copyright>
-  Copyright (c) 2000 - 2008 The Regents of the University of California.
-  All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
-  </copyright>
+<copyright>
+Copyright (c) 2000 - 2009 The Regents of the University of California.
+All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
+</copyright>
 
-  <changelog>
-  </changelog>
+<changelog>
+</changelog>
 
-  <edge from="compute">
-    <to>R-compute</to>
-  </edge>
+<edge from="compute">
+  <to>R-compute</to>
+</edge>
 
 </graph>

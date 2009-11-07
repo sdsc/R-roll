@@ -53,11 +53,6 @@
 # 
 # @Copyright@
 #
-# $Log$
-# Revision 1.2  2009/10/18 01:41:31  jhayes
-# Release for clean-up.
-#
-#
 
 -include $(shell ${ROCKSROOT}/bin/arch).mk
 -include $(shell ${ROCKSROOT}/bin/os).mk
