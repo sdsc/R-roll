@@ -5,6 +5,9 @@ $Id$
 @Copyright@
 
 $Log$
+Revision 1.2  2009/12/04 03:28:39  jhayes
+Remove spurious image reference.
+
 Revision 1.1  2009/12/02 19:22:42  jhayes
 Add usersguide.
 
@@ -25,15 +28,6 @@ added
 <bookinfo>
 
 	<title> R Roll: Users Guide </title>
-
-	<subtitle>
-		<inlinemediaobject>
-			<imageobject>
-				<imagedata fileref="images/roll.png">
-			</imageobject>
-		</inlinemediaobject>
-	</subtitle>
-
 
         <edition>Version &document_version;</edition>
         <pubdate>&document_pubdate;</pubdate>
