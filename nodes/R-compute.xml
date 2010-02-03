@@ -19,11 +19,11 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 
 <post>
 
-<file name="/etc/profile.d/idl.csh" perms="0644">
+<file name="/etc/profile.d/R.csh" perms="0644">
   set path = ( /opt/R/bin $path )
 </file>
 
-<file name="/etc/profile.d/idl.sh" perms="0644">
+<file name="/etc/profile.d/R.sh" perms="0644">
   export PATH=/opt/R/bin:$PATH
 </file>
 
