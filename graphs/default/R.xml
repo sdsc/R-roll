@@ -18,16 +18,18 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <edge from="compute">
   <to>R-compute</to>
 </edge>
+<order head="compute">
+  <tail>R-compute</tail>
+</order>
 
 <edge from="envmodules-common">
   <to>R-modules-common</to>
 </edge>
-
-<order head="R-compute">
+<order head="envmodules-common">
   <tail>R-modules-common</tail>
 </order>
 
-<order head="envmodules-common">
+<order head="R-compute">
   <tail>R-modules-common</tail>
 </order>
 
