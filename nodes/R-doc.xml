@@ -3,7 +3,7 @@
 <kickstart>
 
 <description>
-The R Project for Statistical Computing
+The R Project for Statistical Computing roll documentation
 http://www.r-project.org
 </description>
 
@@ -15,18 +15,9 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <changelog>
 </changelog>
 
-<package>R</package>
+<package>roll-R-usersguide</package>
 
 <post>
-
-<file name="/etc/profile.d/R.csh" perms="0644">
-  set path = ( /opt/R/bin $path )
-</file>
-
-<file name="/etc/profile.d/R.sh" perms="0644">
-  export PATH=/opt/R/bin:$PATH
-</file>
-
 </post>
 
 </kickstart>
