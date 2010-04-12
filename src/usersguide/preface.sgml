@@ -5,10 +5,7 @@
 <para>
 
 The R Roll provides the R statistical computing/graphics package for Rocks.
-It places the R client binary in /opt/R/bin on compute nodes.  In addition,
-these R add-on packages are included in the installation: gam, gap,
-haplo.stats, KEGG.db, KEGGSOAP, biomaRt, org.Dm.eg.db, gene2pathway,
-GenABEL, gee, GWAF, kinship, lattice, nlme, survival.
+It places the R client binary in /opt/R/bin on compute nodes.
 
 </para>
 
