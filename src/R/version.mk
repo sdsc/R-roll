@@ -1,3 +1,3 @@
 NAME    = R
-VERSION = 2.9.2
+VERSION = 2.11.1
 RELEASE = 1
