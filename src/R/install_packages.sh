@@ -8,7 +8,5 @@
 PKGROOT=$1
 
 ${PKGROOT}/bin/R --vanilla << END
-repos <- getOption("repos")
-repos["CRAN"] = "http://cran.stat.ucla.edu"
-options(repos = repos)
+
 END
