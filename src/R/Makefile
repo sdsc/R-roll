@@ -75,9 +75,6 @@ install::
 	  cd $(NAME)-$(VERSION); \
 	  make install; \
 	  cd ..; \
-	  if test -r install_packages.sh; then \
-	    bash install_packages.sh $(PKGROOT); \
-	  fi; \
 	  mv $(PKGROOT)/* $(ROOT)/$(PKGROOT); \
 	  rmdir $(PKGROOT) \
 	)
