@@ -25,6 +25,7 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 
 <file name="/etc/profile.d/R.sh" perms="0644">
   export PATH=/opt/R/bin:$PATH
+  export R_LIBS=/opt/R/local/lib:$R_LIBS
 </file>
 
 </post>

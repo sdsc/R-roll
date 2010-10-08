@@ -33,17 +33,18 @@ if test -f /etc/profile.d/R.sh; then
 
   /bin/mkdir -m 0755 -p /opt/modulefiles/applications/R
 
-<file name="/opt/modulefiles/applications/R/2.9.2" perms="0644">
+<file name="/opt/modulefiles/applications/R/2.11.1" perms="0644">
 #%Module1.0
 prepend-path PATH /opt/R/bin
+prepend-path R_LIBS /opt/R/local/lib
 </file>
 
-<file name="/opt/modulefiles/applications/R/.version.2.9.2">
+<file name="/opt/modulefiles/applications/R/.version.2.11.1">
 #%Module1.0
-set ModulesVersion "2.9.2"
+set ModulesVersion "2.11.1"
 </file>
 
-  /bin/ln -s /opt/modulefiles/applications/R/.version.2.9.2 \
+  /bin/ln -s /opt/modulefiles/applications/R/.version.2.11.1 \
              /opt/modulefiles/applications/R/.version
 
 fi
