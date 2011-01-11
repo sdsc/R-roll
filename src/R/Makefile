@@ -61,7 +61,6 @@ REDHAT.ROOT = $(PWD)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 
 build:
-	yum -y install readline-devel
 	tar zxvf $(NAME)-$(VERSION).tar.gz
 	( \
 	  cd $(NAME)-$(VERSION); \
