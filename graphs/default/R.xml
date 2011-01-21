@@ -36,6 +36,13 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
   <tail>R-doc</tail>
 </order>
 
+<edge from="server">
+  <to>R-server</to>
+</edge>
+<order head="server">
+  <tail>R-server</tail>
+</order>
+
 <order head="R-compute">
   <tail>R-modules-common</tail>
 </order>
