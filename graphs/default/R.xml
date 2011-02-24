@@ -47,4 +47,11 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
   <tail>R-modules-common</tail>
 </order>
 
+<edge from="base">
+  <to>R-roll-test</to>
+</edge>
+<order head="base">
+  <tail>R-roll-test</tail>
+</order>
+
 </graph>
