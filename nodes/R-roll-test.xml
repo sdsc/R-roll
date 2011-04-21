@@ -38,10 +38,14 @@ sort(x)
 END
 close(OUT);
 
-ok(! $isLogin == -d '/opt/R', 'R is/is not installed');
+if($isFe || $isCompute) {
+  ok(-d '/opt/R', 'R is installed');
+} else {
+  ok(! -d '/opt/R', 'R is not installed');
+}
 SKIP: {
 
-  skip 'R roll not installed', 1 if $isLogin;
+  skip 'R roll not installed', 1 if ! -d '/opt/R';
   $output = `/opt/R/bin/R --vanilla < $TESTFILE.R`;
   like($output, qr/0.*1.*2.*3.*4.*5.*6.*7.*8.*9/, 'Simple R run');
 
