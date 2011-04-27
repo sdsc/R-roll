@@ -73,6 +73,7 @@ install::
 	( \
 	  cd $(NAME)-$(VERSION); \
 	  make install; \
+	  make install-tests; \
 	  cd ..; \
 	  mv $(PKGROOT)/* $(ROOT)/$(PKGROOT); \
 	  rmdir $(PKGROOT) \
