@@ -15,10 +15,10 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <changelog>
 </changelog>
 
-<edge from="compute">
+<edge from="base">
   <to>R-install</to>
 </edge>
-<order head="compute">
+<order head="base">
   <tail>R-install</tail>
 </order>
 
