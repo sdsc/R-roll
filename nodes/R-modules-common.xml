@@ -15,47 +15,13 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 <changelog>
 </changelog>
 
-<post>
+<package>R-modules</package>
 
+<post>
 # Remove /etc/profile.d files in favor of loadable modules when available
 if test -f /etc/profile.d/R.sh; then
-
   /bin/rm -f /etc/profile.d/R.*
-
-  if test `grep -c /opt/modulefiles/applications /etc/profile.d/modules.csh` = 0; then
-    echo 'setenv MODULEPATH /opt/modulefiles/applications:$MODULEPATH' >> \
-         /etc/profile.d/modules.csh
-    echo 'if ( -s ${HOME}/.modules ) then' >> /etc/profile.d/modules.csh
-    echo 'source ${HOME}/.modules' >> /etc/profile.d/modules.csh
-    echo 'endif' >> /etc/profile.d/modules.csh
-
-  fi
-  if test `grep -c /opt/modulefiles/applications /etc/profile.d/modules.sh` = 0; then
-    echo 'export MODULEPATH=/opt/modulefiles/applications:$MODULEPATH' >> \
-         /etc/profile.d/modules.sh
-    echo 'if test -f ${HOME}/.modules; then' >> /etc/profile.d/modules.sh
-    echo '. ${HOME}/.modules' >> /etc/profile.d/modules.sh
-    echo 'fi' >> /etc/profile.d/modules.sh
-  fi
-
-  /bin/mkdir -m 0755 -p /opt/modulefiles/applications/R
-
-<file name="/opt/modulefiles/applications/R/2.13.1" perms="0644">
-#%Module1.0
-prepend-path PATH /opt/R/bin
-prepend-path R_LIBS /opt/R/local/lib
-</file>
-
-<file name="/opt/modulefiles/applications/R/.version.2.13.1">
-#%Module1.0
-set ModulesVersion "2.13.1"
-</file>
-
-  /bin/ln -s /opt/modulefiles/applications/R/.version.2.13.1 \
-             /opt/modulefiles/applications/R/.version
-
 fi
-
 </post>
 
 </kickstart>
