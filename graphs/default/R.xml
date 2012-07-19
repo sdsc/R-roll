@@ -22,13 +22,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
   <tail>R-install</tail>
 </order>
 
-<edge from="envmodules-common">
-  <to>R-modules-common</to>
-</edge>
-<order head="envmodules-common">
-  <tail>R-modules-common</tail>
-</order>
-
 <edge from="server">
   <to>R-doc</to>
 </edge>
@@ -41,10 +34,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </edge>
 <order head="server">
   <tail>R-install</tail>
-</order>
-
-<order head="R-install">
-  <tail>R-modules-common</tail>
 </order>
 
 <edge from="base">

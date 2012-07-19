@@ -56,32 +56,17 @@ if($appliance =~ /$installedOnAppliancesPattern/) {
 }
 SKIP: {
 
-  skip 'R roll not installed', 1 if ! $isInstalled;
+  skip 'R roll not installed', 4 if ! $isInstalled;
   $output = `/opt/R/bin/R --vanilla < $TESTFILE.R`;
   like($output, qr/0.*1.*2.*3.*4.*5.*6.*7.*8.*9/, 'Simple R run');
 
-}
-
-# R-modules-common.xml
-SKIP: {
-
-  skip 'R not installed', 1 if ! $isInstalled;
-  my $modulesInstalled = -f '/etc/profile.d/modules.sh';
-  if($modulesInstalled) {
-    ok(! -f '/etc/profile.d/R.csh' &&
-       ! -f '/etc/profile.d/R.sh', 'R profile.d removed');
-    like($ENV{MODULEPATH}, qr#/opt/modulefiles/applications#,
-         'MODULEPATH set for applications');
-    `/bin/ls /opt/modulefiles/applications/R/[0-9]* 2>&1`;
-    ok($? == 0, 'R module installed');
-    `/bin/ls /opt/modulefiles/applications/R/.version.[0-9]* 2>&1`;
-    ok($? == 0, 'R version module installed');
-    ok(-l '/opt/modulefiles/applications/R/.version',
-       'R version module link created');
-  } else {
-    ok(-f '/etc/profile.d/R.csh' && -f '/etc/profile.d/R.sh',
-       'R profile.d installed');
-  }
+  skip 'modules not installed', 3 if ! -f '/etc/profile.d/modules.sh';
+  `/bin/ls /opt/modulefiles/applications/R/[0-9]* 2>&1`;
+  ok($? == 0, 'R module installed');
+  `/bin/ls /opt/modulefiles/applications/R/.version.[0-9]* 2>&1`;
+  ok($? == 0, 'R version module installed');
+  ok(-l '/opt/modulefiles/applications/R/.version',
+     'R version module link created');
 
 } 
 
