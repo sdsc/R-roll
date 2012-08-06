@@ -1,3 +1,3 @@
 #%Module1.0
 prepend-path PATH /opt/R/bin
-prepend-path R_LIBS /opt/R/local/lib
+prepend-path R_LIBS /opt/R/local/lib:/opt/R/local/lib/mvapich2:/opt/R/local/lib/vsmp:/opt/R/local/lib/openmp:/opt/R/local/lib/mpich2
