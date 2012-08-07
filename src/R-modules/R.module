@@ -2,12 +2,15 @@
 if {! [info exists ::env(MPIHOME)]} {
   puts stderr "Need to load an mpi module before loading R"
   exit 1
-}mpi/$network
-foreach {x} [glob -directory /opt/R/local/lib/mpi -tails *] {
-  if {[regexp $x $::env(MPIHOME)]} {
-    set mpi $x
-    break
-  }
+}
+set dir [ exec ls /opt/R/local/lib/mpi ]
+if {  [ string compare $dir "" ] } {
+    foreach {x} [glob -directory /opt/R/local/lib/mpi -tails *] {
+      if {[regexp $x $::env(MPIHOME)]} {
+        set mpi $x
+        break
+      }
+    }
 }
 if {! [info exists mpi]} {
   if {[ regexp ScaleMP $::env(MPIHOME)]} {
@@ -18,11 +21,14 @@ if {! [info exists mpi]} {
   puts stderr "No supported MPI flavor found"
   exit 1
 }
-foreach {x} [glob -directory /opt/R/local/lib/mpi/$mpi -tails *] {
-  if {[regexp $x $::env(MPIHOME)]} {
-    set network $x
-    break
-  }
+set dir [ exec ls /opt/R/local/lib/mpi/$mpi ]
+if {  [ string compare $dir "" ] } {
+    foreach {x} [glob -directory /opt/R/local/lib/mpi/$mpi -tails *] {
+      if {[regexp $x $::env(MPIHOME)]} {
+        set network $x
+        break
+      }
+    }
 }
 if {! [info exists network]} {
   if {[ regexp ScaleMP $::env(MPIHOME)]} {
@@ -34,7 +40,7 @@ if {! [info exists network]} {
   exit 1
 }
 module-whatis "R"
-module-whatis "Version: VERSION"
+module-whatis "Version: 2.15.1"
 module-whatis "Description: R"
 module-whatis "MPI: $mpi $network"
 prepend-path PATH /opt/R/bin
