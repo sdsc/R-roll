@@ -1,47 +1,51 @@
 #%Module1.0
-if {! [info exists ::env(MPIHOME)]} {
-  puts stderr "Need to load an mpi module before loading R"
-  exit 1
-}
+module-whatis "R"
+module-whatis "Version: VERSION"
+module-whatis "Description: R"
+prepend-path PATH /opt/R/bin
 set dir [ exec ls /opt/R/local/lib/mpi ]
 if {  [ string compare $dir "" ] } {
+  if {! [info exists ::env(MPIHOME)]} {
+    puts stderr "Need to load an mpi module before loading R"
+    exit 1
+  }
+  if {  [ string compare $dir "" ] } {
     foreach {x} [glob -directory /opt/R/local/lib/mpi -tails *] {
       if {[regexp $x $::env(MPIHOME)]} {
         set mpi $x
         break
       }
     }
-}
-if {! [info exists mpi]} {
-  if {[ regexp ScaleMP $::env(MPIHOME)]} {
-      set mpi vsmp
   }
-}
-if {! [info exists mpi]} {
-  puts stderr "No supported MPI flavor found"
-  exit 1
-}
-set dir [ exec ls /opt/R/local/lib/mpi/$mpi ]
-if {  [ string compare $dir "" ] } {
+  if {! [info exists mpi]} {
+    if {[ regexp ScaleMP $::env(MPIHOME)]} {
+        set mpi vsmp
+    }
+  }
+  if {! [info exists mpi]} {
+    puts stderr "No supported MPI flavor found"
+    exit 1
+  }
+  set dir [ exec ls /opt/R/local/lib/mpi/$mpi ]
+  if {  [ string compare $dir "" ] } {
     foreach {x} [glob -directory /opt/R/local/lib/mpi/$mpi -tails *] {
       if {[regexp $x $::env(MPIHOME)]} {
         set network $x
         break
       }
     }
-}
-if {! [info exists network]} {
-  if {[ regexp ScaleMP $::env(MPIHOME)]} {
-      set network ib
   }
+  if {! [info exists network]} {
+    if {[ regexp ScaleMP $::env(MPIHOME)]} {
+       set network ib
+    }
+  }
+  if {! [info exists network]} {
+    puts stderr "No supported network found"
+    exit 1
+  }
+  module-whatis "MPI: $mpi $network"
+  prepend-path R_LIBS /opt/R/local/lib:/opt/R/local/lib/mpi/$mpi/$network
+} else {
+  prepend-path R_LIBS /opt/R/local/lib
 }
-if {! [info exists network]} {
-  puts stderr "No supported network found"
-  exit 1
-}
-module-whatis "R"
-module-whatis "Version: 2.15.1"
-module-whatis "Description: R"
-module-whatis "MPI: $mpi $network"
-prepend-path PATH /opt/R/bin
-prepend-path R_LIBS /opt/R/local/lib:/opt/R/local/lib/mpi/$mpi/$network
