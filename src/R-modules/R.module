@@ -1,6 +1,6 @@
 #%Module1.0
 if {! [info exists ::env(MPIHOME)]} {
-  puts stderr "Need to load an mpi module before loading hdf5"
+  puts stderr "Need to load an mpi module before loading R"
   exit 1
 }mpi/$network
 foreach {x} [glob -directory /opt/R/local/lib/mpi -tails *] {
@@ -18,7 +18,7 @@ if {! [info exists mpi]} {
   puts stderr "No supported MPI flavor found"
   exit 1
 }
-foreach {x} [glob -directory /opt/hdf5/COMPILER/$mpi -tails *] {
+foreach {x} [glob -directory /opt/R/local/lib/mpi/$mpi -tails *] {
   if {[regexp $x $::env(MPIHOME)]} {
     set network $x
     break
