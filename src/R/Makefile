@@ -82,7 +82,6 @@ install::
 	  make install; \
 	  make install-tests; \
 	  cd ..; \
-          mkdir -p $(PKGROOT)/local/lib/mpi; \
 	  mv $(PKGROOT)/* $(ROOT)/$(PKGROOT); \
 	  rmdir $(PKGROOT) \
 	)
