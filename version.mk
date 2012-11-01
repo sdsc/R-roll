@@ -1,5 +1,5 @@
 ROLLNAME = R
-RELEASE  = 5
+RELEASE  = 0
 COLOR    = orange
 
 REDHAT.ROOT = $(PWD)
