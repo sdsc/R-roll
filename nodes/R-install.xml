@@ -17,5 +17,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 
 <package>R</package>
 <package>R-modules</package>
+<package>R-roll-test</package>
 
 </kickstart>
