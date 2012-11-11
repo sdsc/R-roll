@@ -49,3 +49,4 @@ if {  [ string compare $dir "" ] } {
 } else {
   prepend-path R_LIBS /opt/R/local/lib
 }
+setenv RHOME /opt/R
