@@ -66,7 +66,7 @@ build:
 	  cd $(NAME)-$(VERSION); \
           module load intel; \
           export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-          export MKLLINK="-L$${MKLLIB} -L/opt/intel/composer_xe_2011_sp1.7.256/compiler/lib/intel64 -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -fopenmp -lpthread -lm"; \
+          export MKLLINK="-L$${MKLLIB} -L${MKL_ROOT}/../compiler/lib/intel64 -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -fopenmp -lpthread -lm"; \
           module unload intel; \
           export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
           export LAPACK_LIBS="$${MKLLINK}"; \
