@@ -9,7 +9,7 @@ use Test::More qw(no_plan);
 my $appliance = $#ARGV >= 0 ? $ARGV[0] :
                 -d '/export/rocks/install' ? 'Frontend' : 'Compute';
 my $output;
-my $installedOnAppliancesPattern = 'Compute|Frontend';
+my $installedOnAppliancesPattern = '.';
 my $isInstalled = -d '/opt/R';
 
 my $TESTFILE = 'tmpR';
