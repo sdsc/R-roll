@@ -1,3 +1,3 @@
 NAME    = R-modules
-VERSION = 2.15.2
+VERSION = 3.0.1
 RELEASE = 0
