@@ -70,7 +70,7 @@ build:
           module unload intel; \
           export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
           export LAPACK_LIBS="$${MKLLINK}"; \
-	  ./configure --enable-threads=posix --prefix=$(PKGROOT) --with-blas="$${MKLLINK}" --with-lapack; \
+	  ./configure --enable-R-shlib --enable-threads=posix --prefix=$(PKGROOT) --with-blas="$${MKLLINK}" --with-lapack; \
 	  make \
 	)
 
