@@ -1,6 +1,6 @@
 ROLL    = R
 NAME    = roll-$(ROLL)-usersguide
-RELEASE = 5
+RELEASE = 6
 
 SUMMARY_COMPATIBLE   = $(VERSION)
 SUMMARY_MAINTAINER   = Rocks Group
