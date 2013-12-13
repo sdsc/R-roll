@@ -1,4 +1,4 @@
-# SDSC Rocks "R" roll
+# SDSC "R" roll
 
 ## Overview
 
