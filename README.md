@@ -42,4 +42,9 @@ To install, execute these instructions on a Rocks frontend:
 ```
 
 In addition to the software itself, the roll installs R environment module
-files in /opt/modulefiles/applications/R.
+files in:
+
+```shell
+/opt/modulefiles/applications/R
+```
+
