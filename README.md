@@ -1,6 +1,8 @@
-# R-roll
+# SDSC Rocks "R" roll
 
-This roll bundles the R statistical computing package.
+## Overview
+
+This Rocks roll bundles the R statistical computing package.
 
 R is a free software environment for statistical computing and graphics. For more information about R please visit the <a href="http://www.r-project.org" target="_blank">official web page</a>.
 
