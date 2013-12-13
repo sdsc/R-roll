@@ -48,3 +48,18 @@ files in:
 /opt/modulefiles/applications/R
 ```
 
+## Testing
+
+The R-roll includes a test script which can be run to verify proper installation of the R-roll documentation, binaries and module files. To run the test scripts execute the following command(s):
+
+```shell
+% /root/rolltests/R.t 
+ok 1 # skip not server
+ok 2 - R is installed
+ok 3 - Simple R run
+ok 4 - R module installed
+ok 5 - R version module installed
+ok 6 - R version module link created
+1..6
+```
+
