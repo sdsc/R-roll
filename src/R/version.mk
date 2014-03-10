@@ -2,7 +2,7 @@ NAME               = R
 VERSION            = 3.0.1
 RELEASE            = 0
 PKGROOT            = /opt/R
-RPM.EXTRAS         = "Autoreq: no"
+RPM.EXTRAS         = AutoReq:No
 
 SRC_SUBDIR         = R
 

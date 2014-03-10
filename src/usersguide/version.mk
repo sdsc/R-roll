@@ -1,6 +1,7 @@
 ROLL    = R
 NAME    = roll-$(ROLL)-usersguide
 RELEASE = 6
+RPM.EXTRAS         = AutoReq:No
 
 SUMMARY_COMPATIBLE   = $(VERSION)
 SUMMARY_MAINTAINER   = Rocks Group
