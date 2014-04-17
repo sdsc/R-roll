@@ -67,7 +67,7 @@ build: $(SRC_DIRS)
 	  cd $(SOURCE_DIR); \
 	  module load intel; \
 	  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-	  export MKLLINK="-L$${MKLLIB} -L${MKL_ROOT}/../compiler/lib/intel64 -lmkl_gf_lp64 -lmkl_gnu_thread -lmkl_core -fopenmp -lpthread -lm"; \
+	  export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
 	  module unload intel; \
 	  export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
 	  export LAPACK_LIBS="$${MKLLINK}"; \

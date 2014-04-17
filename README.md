@@ -22,7 +22,15 @@ development machine.
 
 ## Dependencies
 
-None
+R uses the LAPACK library and the roll uses the mkl/intel lapack implementation. Therefore this roll 
+depends on the intel roll when the mkl libraries are used.
+
+If another lapack implementation is desired, its path can be substituted,
+on the "export LAPACK_LIBS" line of the Makefile file in src/R. For example for lapack/blas built from source:
+
+export LAPACK_LIBS="-L/opt/lapack/gnu/lib -llapack -lblas"
+
+R is built with the gnu compilers (gcc and gfortran), and so requires the gnucompiler roll, assuming the latest version is wanted.
 
 
 ## Building
