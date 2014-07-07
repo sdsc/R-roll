@@ -8,12 +8,9 @@ http://www.r-project.org
 </description>
 
 <copyright>
-Copyright (c) 2000 - 2011 The Regents of the University of California.
+Copyright (c) 2000 - 2014 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </copyright>
-
-<changelog>
-</changelog>
 
 <edge from="base">
   <to>R-install</to>
@@ -27,13 +24,6 @@ All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </edge>
 <order head="server">
   <tail>R-doc</tail>
-</order>
-
-<edge from="server">
-  <to>R-install</to>
-</edge>
-<order head="server">
-  <tail>R-install</tail>
 </order>
 
 </graph>
