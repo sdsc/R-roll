@@ -3,18 +3,16 @@ module-whatis "R"
 module-whatis "Version: VERSION"
 module-whatis "Description: R"
 prepend-path PATH /opt/R/bin
-set dir [ exec ls /opt/R/local/lib/mpi ]
-if {  [ string compare $dir "" ] } {
-  if {! [info exists ::env(MPIHOME)]} {
-    puts stderr "Need to load an mpi module before loading R"
-    exit 1
-  }
-  if {  [ string compare $dir "" ] } {
-    foreach {x} [glob -directory /opt/R/local/lib/mpi -tails *] {
-      if {[regexp $x $::env(MPIHOME)]} {
-        set mpi $x
-        break
-      }
+prepend-path R_LIBS /opt/R/local/lib
+set dir ""
+if { [ file exists /opt/R/local/lib/mpi ] } {
+  set dir [ exec ls /opt/R/local/lib/mpi ]
+}
+if { [ string compare $dir "" ] && [info exists ::env(MPIHOME)]} {
+  foreach {x} [glob -directory /opt/R/local/lib/mpi -tails *] {
+    if {[regexp $x $::env(MPIHOME)]} {
+      set mpi $x
+      break
     }
   }
   if {! [info exists mpi]} {
@@ -45,8 +43,6 @@ if {  [ string compare $dir "" ] } {
     exit 1
   }
   module-whatis "MPI: $mpi $network"
-  prepend-path R_LIBS /opt/R/local/lib:/opt/R/local/lib/mpi/$mpi/$network
-} else {
-  prepend-path R_LIBS /opt/R/local/lib
+  prepend-path R_LIBS /opt/R/local/lib/mpi/$mpi/$network
 }
 setenv RHOME /opt/R
