@@ -56,36 +56,57 @@
 #
 # $Log$
 
+# Note: normally this package is built with a single compiler, and the rpms
+# from multiple compiler builds will overwrite each other.
+PKGROOT = /opt/R
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
-include Rules.mk
 include pull.mk
+
+COMPILERSETUP = \
+  if test -e /etc/profile.d/modules.sh; then \
+    . /etc/profile.d/modules.sh; \
+    module=`module avail 2>&1 | grep -o -m1 "\<$(ROLLCOMPILER)\>"`; \
+    if test "$${module}" != "$(ROLLCOMPILER)"; then \
+      echo *** ERROR: Compiler $(ROLLCOMPILER) not found; \
+      exit 2; \
+    fi; \
+    module load $(ROLLCOMPILER); \
+  fi
+CONFIG_OPTS = --enable-R-shlib --enable-threads=posix
+
+ifeq ("$(COMPILERNAME)", "gnu")
+else ifeq ("$(COMPILERNAME)", "intel")
+  COMPILERSETUP += ;\
+    export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
+    export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
+    export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
+    export LAPACK_LIBS="$${MKLLINK}"
+  CONFIG_OPTS += --with-blas="$${MKLLINK}" --with-lapack
+else ifeq ("$(COMPILERNAME)", "pgi")
+endif
 
 build: $(SRC_DIRS)
 	( \
+	  $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
-	  module load intel; \
-	  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-	  export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
-	  module unload intel; \
-	  export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
-	  export LAPACK_LIBS="$${MKLLINK}"; \
-	  ./configure --enable-R-shlib --enable-threads=posix --prefix=$(PKGROOT) --with-blas="$${MKLLINK}" --with-lapack; \
-	  $(MAKE); \
+	  ./configure --prefix=$(PKGROOT) $(CONFIG_OPTS); \
+	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
-	
+
 install::
-	mkdir -p $(ROOT)/$(PKGROOT)
+	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
+	-mkdir -p -m 755 $(PKGROOT)
+	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
 	( \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
-	  $(MAKE) install-tests; \
-	  cd ..; \
-	  mv $(PKGROOT)/* $(ROOT)/$(PKGROOT); \
-	  rmdir $(PKGROOT) ; \
+	  $(MAKE) install-tests \
 	)
+	umount $(PKGROOT)
+	-rmdir -p $(PKGROOT)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::

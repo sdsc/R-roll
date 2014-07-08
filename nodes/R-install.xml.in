@@ -8,14 +8,11 @@ http://www.r-project.org
 </description>
 
 <copyright>
-Copyright (c) 2000 - 2011 The Regents of the University of California.
+Copyright (c) 2000 - 2014 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </copyright>
 
-<changelog>
-</changelog>
-
-<package>R</package>
+<package>R_COMPILERNAME</package>
 <package>R-modules</package>
 <package>R-roll-test</package>
 

@@ -21,6 +21,17 @@ sort(x)
 END
 close(OUT);
 
+open(OUT, ">$TESTFILE.sh");
+print OUT <<END;
+#!/bin/bash
+if test -f /etc/profile.d/modules.sh; then
+  . /etc/profile.d/modules.sh
+  module load ROLLCOMPILER R
+  R --vanilla < $TESTFILE.R
+fi
+END
+close(OUT);
+
 # R-doc.xml
 SKIP: {
   skip 'not server', 1 if $appliance ne 'Frontend';
@@ -36,7 +47,7 @@ if($appliance =~ /$installedOnAppliancesPattern/) {
 SKIP: {
 
   skip 'R roll not installed', 4 if ! $isInstalled;
-  $output = `/opt/R/bin/R --vanilla < $TESTFILE.R`;
+  $output = `/bin/bash $TESTFILE.sh 2>&1`;
   like($output, qr/0.*1.*2.*3.*4.*5.*6.*7.*8.*9/, 'Simple R run');
 
   skip 'modules not installed', 3 if ! -f '/etc/profile.d/modules.sh';

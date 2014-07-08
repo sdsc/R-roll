@@ -22,16 +22,7 @@ development machine.
 
 ## Dependencies
 
-R uses the LAPACK library and the roll uses the mkl/intel lapack implementation. Therefore this roll 
-depends on the intel roll when the mkl libraries are used.
-
-If another lapack implementation is desired, its path can be substituted,
-on the "export LAPACK_LIBS" line of the Makefile file in src/R. For example for lapack/blas built from source:
-
-export LAPACK_LIBS="-L/opt/lapack/gnu/lib -llapack -lblas"
-
-R is built with the gnu compilers (gcc and gfortran), and so requires the gnucompiler roll, assuming the latest version is wanted.
-
+None.
 
 ## Building
 
@@ -48,6 +39,30 @@ created as... `R-roll-*.iso`. If you built the roll on a Rocks frontend then
 proceed to the installation step. If you built the roll on a Rocks development
 appliance you need to copy the roll to your Rocks frontend before continuing
 with installation.
+
+This roll source supports building with different compilers; by default, it
+builds using the gnu compilers.  To build for a different configuration, use
+the `ROLLCOMPILER` make variable, e.g.,
+
+```shell
+% make ROLLCOMPILER=intel
+```
+
+The build process currently supports one or more of the values "intel", "pgi",
+and "gnu" for the `ROLLCOMPILER` variable, defaulting to "gnu".  The build
+process uses the ROLLCOMPILER value to load an environment module, so you can
+also use it to specify a particular compiler version, e.g.,
+
+```shell
+% make ROLLCOMPILER=gnu/4.8.1
+```
+
+The `ROLLCOMPILER` value is incorporated into the name of the produced rpm, e.g.,
+
+```shell
+make ROLLCOMPILER=intel
+```
+produces an rpm with a name that begins "`boost_intel`".
 
 
 ## Installation
@@ -77,12 +92,5 @@ execute the following command(s):
 
 ```shell
 % /root/rolltests/R.t 
-ok 1 # skip not server
-ok 2 - R is installed
-ok 3 - Simple R run
-ok 4 - R module installed
-ok 5 - R version module installed
-ok 6 - R version module link created
-1..6
 ```
 

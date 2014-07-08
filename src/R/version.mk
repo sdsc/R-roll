@@ -1,12 +1,16 @@
-NAME               = R
+ifndef ROLLCOMPILER
+  ROLLCOMPILER = gnu
+endif
+COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
+
+NAME               = R_$(COMPILERNAME)
 VERSION            = 3.0.1
-RELEASE            = 0
-PKGROOT            = /opt/R
+RELEASE            = 1
 RPM.EXTRAS         = AutoReq:No
 
 SRC_SUBDIR         = R
 
-SOURCE_NAME        = $(NAME)
+SOURCE_NAME        = R
 SOURCE_VERSION     = $(VERSION)
 SOURCE_SUFFIX      = tar.gz
 SOURCE_PKG         = $(SOURCE_NAME)-$(SOURCE_VERSION).$(SOURCE_SUFFIX)
