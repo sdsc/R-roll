@@ -57,6 +57,10 @@ also use it to specify a particular compiler version, e.g.,
 % make ROLLCOMPILER=gnu/4.8.1
 ```
 
+If the environment variable MKL_ROOT is set either before the build or by the
+ROLLCOMPILER module, the build process will incorporate the Math Kernel
+Libraries into the R installation.
+
 The `ROLLCOMPILER` value is incorporated into the name of the produced rpm, e.g.,
 
 ```shell

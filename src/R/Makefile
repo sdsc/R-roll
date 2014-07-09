@@ -73,25 +73,23 @@ COMPILERSETUP = \
       exit 2; \
     fi; \
     module load $(ROLLCOMPILER); \
-  fi
-CONFIG_OPTS = --enable-R-shlib --enable-threads=posix
-
-ifeq ("$(COMPILERNAME)", "gnu")
-else ifeq ("$(COMPILERNAME)", "intel")
-  COMPILERSETUP += ;\
+  fi; \
+  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
+  if test -n "$${MKL_ROOT}"; then \
     export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
     export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
     export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
-    export LAPACK_LIBS="$${MKLLINK}"
-  CONFIG_OPTS += --with-blas="$${MKLLINK}" --with-lapack
-else ifeq ("$(COMPILERNAME)", "pgi")
-endif
+    export BLAS_LIBS="$${MKLLINK}"; \
+    export LAPACK_LIBS="$${MKLLINK}"; \
+    export CONFIG_OPTS="$${CONFIG_OPTS} --with-blas --with-lapack"; \
+  fi
 
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
-	  ./configure --prefix=$(PKGROOT) $(CONFIG_OPTS); \
+	  echo ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
+	  ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
