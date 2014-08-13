@@ -49,9 +49,10 @@ the `ROLLCOMPILER` make variable, e.g.,
 ```
 
 The build process currently supports one or more of the values "intel", "pgi",
-and "gnu" for the `ROLLCOMPILER` variable, defaulting to "gnu".  The build
-process uses the ROLLCOMPILER value to load an environment module, so you can
-also use it to specify a particular compiler version, e.g.,
+and "gnu" for the `ROLLCOMPILER` variable, defaulting to "gnu".  If possible,
+the build process uses the ROLLCOMPILER value to load an environment module,
+and it supports using the ROLLCOMPILER value to specify a particular compiler
+version, e.g.,
 
 ```shell
 % make ROLLCOMPILER=gnu/4.8.1
@@ -66,7 +67,7 @@ The `ROLLCOMPILER` value is incorporated into the name of the produced rpm, e.g.
 ```shell
 make ROLLCOMPILER=intel
 ```
-produces an rpm with a name that begins "`boost_intel`".
+produces an rpm with a name that begins "`R_intel`".
 
 
 ## Installation

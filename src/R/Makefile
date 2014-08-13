@@ -64,16 +64,20 @@ REDHAT.ROOT = $(CURDIR)/../../
 -include $(ROCKSROOT)/etc/Rules.mk
 include pull.mk
 
+CC = gcc
+ifeq ("$(COMPILERNAME)", "intel")
+  CC = icc
+else ifeq ("$(COMPILERNAME)", "pgi")
+  CC = pgcc
+endif
+
 COMPILERSETUP = \
   if test -e /etc/profile.d/modules.sh; then \
     . /etc/profile.d/modules.sh; \
-    module=`module avail 2>&1 | grep -o -m1 "\<$(ROLLCOMPILER)\>"`; \
-    if test "$${module}" != "$(ROLLCOMPILER)"; then \
-      echo *** ERROR: Compiler $(ROLLCOMPILER) not found; \
-      exit 2; \
-    fi; \
-    module load $(ROLLCOMPILER); \
+    module load $(ROLLCOMPILER) || true; \
   fi; \
+  echo === Compiler and version ===; \
+  $(CC) --version; \
   export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
   if test -n "$${MKL_ROOT}"; then \
     export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
@@ -88,13 +92,14 @@ build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
 	  cd $(SOURCE_DIR); \
-	  echo ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  $(MAKE) \
 	)
 	@echo "::: Package $(NAME) build complete :::"
 
 install::
+	# Bind mount seems to be the only way to keep the install from writing
+	# the install dir into binary files.
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	-mkdir -p -m 755 $(PKGROOT)
 	mount --bind $(ROOT)/$(PKGROOT) $(PKGROOT)
