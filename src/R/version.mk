@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME               = R_$(COMPILERNAME)
-VERSION            = 3.0.1
-RELEASE            = 2
+VERSION            = 3.1.1
+RELEASE            = 1
 RPM.EXTRAS         = AutoReq:No
 
 SRC_SUBDIR         = R

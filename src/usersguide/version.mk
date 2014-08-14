@@ -1,6 +1,6 @@
 ROLL    = R
 NAME    = roll-$(ROLL)-usersguide
-RELEASE = 6
+RELEASE = 1
 RPM.EXTRAS         = AutoReq:No
 
 SUMMARY_COMPATIBLE   = $(VERSION)
