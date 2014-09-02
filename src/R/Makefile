@@ -56,9 +56,6 @@
 #
 # $Log$
 
-# Note: normally this package is built with a single compiler, and the rpms
-# from multiple compiler builds will overwrite each other.
-PKGROOT = /opt/R
 REDHAT.ROOT = $(CURDIR)/../../
 
 -include $(ROCKSROOT)/etc/Rules.mk
