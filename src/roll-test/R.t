@@ -26,7 +26,7 @@ print OUT <<END;
 #!/bin/bash
 if test -f /etc/profile.d/modules.sh; then
   . /etc/profile.d/modules.sh
-  module load ROLLCOMPILER R
+  module load R
   R --vanilla < $TESTFILE.R
 fi
 END

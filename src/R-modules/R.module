@@ -46,3 +46,4 @@ if { [ string compare $dir "" ] && [info exists ::env(MPIHOME)]} {
   prepend-path R_LIBS /opt/R/local/lib/mpi/$mpi/$network
 }
 setenv RHOME /opt/R
+module load ROLLCOMPILER
