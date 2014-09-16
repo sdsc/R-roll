@@ -8,7 +8,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = R_$(COMPILERNAME)
 VERSION        = 3.1.1
-RELEASE        = 1
+RELEASE        = 2
 PKGROOT        = /opt/R
 
 SRC_SUBDIR     = R

@@ -24,19 +24,10 @@ close(OUT);
 open(OUT, ">$TESTFILE.sh");
 print OUT <<END;
 #!/bin/bash
-if test -f /etc/profile.d/modules.sh; then
-  . /etc/profile.d/modules.sh
-  module load R
-  R --vanilla < $TESTFILE.R
-fi
+module load R
+R --vanilla < $TESTFILE.R
 END
 close(OUT);
-
-# R-doc.xml
-SKIP: {
-  skip 'not server', 1 if $appliance ne 'Frontend';
-  ok(-d '/var/www/html/roll-documentation/R', 'doc installed');
-}
 
 # R-install.xml
 if($appliance =~ /$installedOnAppliancesPattern/) {
@@ -50,7 +41,6 @@ SKIP: {
   $output = `/bin/bash $TESTFILE.sh 2>&1`;
   like($output, qr/0.*1.*2.*3.*4.*5.*6.*7.*8.*9/, 'Simple R run');
 
-  skip 'modules not installed', 3 if ! -f '/etc/profile.d/modules.sh';
   `/bin/ls /opt/modulefiles/applications/R/[0-9]* 2>&1`;
   ok($? == 0, 'R module installed');
   `/bin/ls /opt/modulefiles/applications/R/.version.[0-9]* 2>&1`;

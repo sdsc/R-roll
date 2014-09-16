@@ -69,25 +69,27 @@ else ifeq ("$(COMPILERNAME)", "pgi")
 endif
 
 COMPILERSETUP = \
-  if test -e /etc/profile.d/modules.sh; then \
-    . /etc/profile.d/modules.sh; \
-    module load $(ROLLCOMPILER) || true; \
-  fi; \
+  module load $(ROLLCOMPILER) || true; \
   echo === Compiler and version ===; \
-  $(CC) --version; \
-  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
-  if test -n "$${MKL_ROOT}"; then \
-    export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
-    export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
-    export LD_LIBRARY_PATH=$${MKLLIB}:$${LD_LIBRARY_PATH}; \
-    export BLAS_LIBS="$${MKLLINK}"; \
-    export LAPACK_LIBS="$${MKLLINK}"; \
-    export CONFIG_OPTS="$${CONFIG_OPTS} --with-blas --with-lapack"; \
-  fi
+  $(CC) --version
+
+MKLSETUP = \
+  module load mkl || true; \
+  echo === MKL_ROOT ===; \
+  echo $${MKL_ROOT}; \
+  export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`
 
 build: $(SRC_DIRS)
 	( \
 	  $(COMPILERSETUP); \
+	  $(MKLSETUP); \
+	  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
+	  if test -n "$${MKL_ROOT}"; then \
+	    export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
+	    export BLAS_LIBS="$${MKLLINK}"; \
+	    export LAPACK_LIBS="$${MKLLINK}"; \
+	    export CONFIG_OPTS="$${CONFIG_OPTS} --with-blas --with-lapack"; \
+	  fi; \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  $(MAKE) \
