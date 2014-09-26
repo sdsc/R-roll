@@ -1,5 +1,9 @@
-NAME       = R-modules
-VERSION    = 3.1.1
-RELEASE    = 2
+NAME        = R-modules
+RELEASE     = 3
+PKGROOT     = /opt/modulefiles/applications/R
 
-RPM.EXTRAS = AutoReq:No
+VERSION_SRC = $(REDHAT.ROOT)/src/R/version.mk
+VERSION_INC = version.inc
+include $(VERSION_INC)
+
+RPM.EXTRAS  = AutoReq:No
