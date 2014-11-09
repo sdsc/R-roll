@@ -26,19 +26,17 @@ None.
 
 ## Building
 
-To build the R-roll, execute these instructions on a Rocks development machine
+To build the R-roll, execute this on a Rocks development machine
 (e.g., a frontend or development appliance):
 
 ```shell
-% make default 2>&1 | tee build.log
-% grep "RPM build error" build.log
+% make 2>&1 | tee build.log
 ```
 
-If nothing is returned from the grep command then the roll should have been
-created as... `R-roll-*.iso`. If you built the roll on a Rocks frontend then
-proceed to the installation step. If you built the roll on a Rocks development
-appliance you need to copy the roll to your Rocks frontend before continuing
-with installation.
+A successful build will create the file `R-*.disk1.iso`.  If you built the
+roll on a Rocks frontend, proceed to the installation step. If you built the
+roll on a Rocks development appliance, you need to copy the roll to your Rocks
+frontend before continuing with installation.
 
 This roll source supports building with different compilers; by default, it
 builds using the gnu compilers.  To build for a different configuration, use
@@ -48,11 +46,10 @@ the `ROLLCOMPILER` make variable, e.g.,
 % make ROLLCOMPILER=intel
 ```
 
-The build process currently supports one or more of the values "intel", "pgi",
-and "gnu" for the `ROLLCOMPILER` variable, defaulting to "gnu".  If possible,
-the build process uses the ROLLCOMPILER value to load an environment module,
-and it supports using the ROLLCOMPILER value to specify a particular compiler
-version, e.g.,
+This roll source supports building with different compilers.
+The `ROLLCOMPILER` make variable can be used to
+specify the names of compiler modulefiles to use for building the
+software, e.g.,
 
 ```shell
 % make ROLLCOMPILER=gnu/4.8.1
@@ -61,13 +58,6 @@ version, e.g.,
 If the environment variable MKL_ROOT is set either before the build or by the
 ROLLCOMPILER module, the build process will incorporate the Math Kernel
 Libraries into the R installation.
-
-The `ROLLCOMPILER` value is incorporated into the name of the produced rpm, e.g.,
-
-```shell
-make ROLLCOMPILER=intel
-```
-produces an rpm with a name that begins "`R_intel`".
 
 
 ## Installation
@@ -92,10 +82,9 @@ in:
 ## Testing
 
 The R-roll includes a test script which can be run to verify proper installation
-of the R-roll documentation, binaries and module files. To run the test scripts
+of the roll documentation, binaries and module files. To run the test scripts
 execute the following command(s):
 
 ```shell
 % /root/rolltests/R.t 
 ```
-
