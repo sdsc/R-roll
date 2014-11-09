@@ -1,14 +1,11 @@
-# Note: normally this package is built with a single compiler, and the rpms
-# from multiple compiler builds will overwrite each other.
-
 ifndef ROLLCOMPILER
   ROLLCOMPILER = gnu
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
-NAME           = R_$(COMPILERNAME)
+NAME           = sdsc-R
 VERSION        = 3.1.1
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/R
 
 SRC_SUBDIR     = R

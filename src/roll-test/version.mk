@@ -1,6 +1,6 @@
-NAME       = R-roll-test
+NAME       = sdsc-R-roll-test
 VERSION    = 1
-RELEASE    = 2
+RELEASE    = 3
 PKGROOT    = /root/rolltests
 
 RPM.EXTRAS = AutoReq:No

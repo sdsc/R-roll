@@ -53,34 +53,20 @@
 # IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 # 
 # @Copyright@
-#
 
 ifndef ROLLCOMPILER
   ROLLCOMPILER = gnu
 endif
 
 -include $(ROLLSROOT)/etc/Rolls.mk
+include Rolls.mk
 
 default:
-# Copy and substitute lines of nodes/*.in that reference ROLLCOMPILER,
-	for i in `ls nodes/*.in`; do \
-	  export o=`echo $$i | sed 's/\.in//'`; \
-	  cp $$i $$o; \
-	  for c in $(ROLLCOMPILER); do \
-	    COMPILERNAME=`echo $$c | awk -F/ '{print $$1}'`; \
-	    perl -pi -e "print and s/COMPILERNAME/$${COMPILERNAME}/g if m/COMPILERNAME/" $$o; \
-	  done; \
-	  perl -pi -e '$$_ = "" if m/COMPILERNAME/' $$o; \
-	done
 	$(MAKE) ROLLCOMPILER="$(ROLLCOMPILER)" roll
 
 clean::
 	rm -f _arch bootstrap.py
 
-distclean: clean
-	for i in `ls nodes/*.in`; do \
-	  export o=`echo $$i | sed 's/\.in//'`; \
-	  rm -f $$o; \
-	done
-	-rm -rf RPMS SRPMS
+distclean:: clean
+	rm -fr RPMS SRPMS
 	-rm -f build.log

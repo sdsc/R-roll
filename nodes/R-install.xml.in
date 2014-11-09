@@ -12,8 +12,8 @@ Copyright (c) 2000 - 2014 The Regents of the University of California.
 All rights reserved. Rocks(r) v5.1 www.rocksclusters.org
 </copyright>
 
-<package>R_COMPILERNAME</package>
-<package>R-modules</package>
-<package>R-roll-test</package>
+<package>sdsc-R</package>
+<package>sdsc-R-modules</package>
+<package>sdsc-R-roll-test</package>
 
 </kickstart>
