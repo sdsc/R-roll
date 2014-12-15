@@ -22,7 +22,18 @@ development machine.
 
 ## Dependencies
 
-None.
+The sdsc-roll must be installed on the build machine, since the build process
+depends on make include files provided by that roll.
+
+The roll sources assume that modulefiles provided by SDSC compiler
+rolls are available, but it will build without them as long as the environment
+variables they provide are otherwise defined.
+
+The build process requires the MKL libraries and assumes that the mkl
+modulefile provided by the SDSC mkl-roll or intel-rollis available.  It will build without
+the modulefile as long as the environment variables it provides are otherwise
+defined.
+
 
 ## Building
 
