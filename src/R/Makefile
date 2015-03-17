@@ -87,10 +87,10 @@ build: $(SRC_DIRS)
 	    export LAPACK_LIBS="$${MKLLINK}"; \
 	    export CONFIG_OPTS="$${CONFIG_OPTS} --with-blas --with-lapack"; \
 	  fi; \
-          export CC=$(CC); \
-          export CXX=$(CXX); \
-          export FC=$(FC); \
-          export F77=$(FC); \
+	  export CC=$(CC); \
+	  export CXX=$(CXX); \
+	  export FC=$(FC); \
+	  export F77=$(FC); \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  $(MAKE) \
@@ -103,6 +103,7 @@ install::
 	mkdir -p -m 755 $(ROOT)/$(PKGROOT)
 	$(PKGROOT_BIND_MOUNT)
 	( \
+	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
 	  $(MAKE) install-tests \
