@@ -22,6 +22,10 @@ development machine.
 
 ## Dependencies
 
+yum install tk-devel
+Not needed by R itself; however, a number of R modules depend on R having been
+compiled with the tk-devel package present.
+
 The sdsc-roll must be installed on the build machine, since the build process
 depends on make include files provided by that roll.
 
