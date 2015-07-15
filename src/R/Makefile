@@ -77,11 +77,16 @@ LICENSE: $(SRC_DIRS)
 	echo GPL > $@
 
 build: $(SRC_DIRS)
+	# Hack for R-3.1.2--retest for later versions.
+	# Without this change, gnu build fails because configure tries to apply
+	# an OSX-specific work-around.
+	perl -pi -e 's/use_veclib_g95fix=yes/use_veclib_g95fix=no/' $(SOURCE_DIR)/configure
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
 	  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
 	  if test -n "$${MKL_ROOT}"; then \
+	    export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
 	    export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
 	    export BLAS_LIBS="$${MKLLINK}"; \
 	    export LAPACK_LIBS="$${MKLLINK}"; \
