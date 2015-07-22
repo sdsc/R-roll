@@ -68,6 +68,7 @@ $(NAME).spec: DESCRIPTION LICENSE
 ifdef WITHOUT_MKL
 DESCRIBE_MKL = 
 R_CONFIG_EXTRA = --with-blas --with-lapack
+MODULE_LOAD_MKL = echo "building without mkl module"
 endif
 
 DESCRIPTION:
@@ -85,6 +86,7 @@ LICENSE: $(SRC_DIRS)
 build: $(SRC_DIRS)
 	( \
 	  $(MODULE_LOAD_CC); \
+	  $(MODULE_LOAD_MKL); \
 	  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
 	  export CONFIG_OPTS="$${CONFIG_OPTS} $(R_CONFIG_EXTRA)"; \
 	  if test -n "$${MKL_ROOT}"; then \
