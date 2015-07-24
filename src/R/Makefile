@@ -68,15 +68,19 @@ DESCRIPTION:
 	$(MODULE_LOAD_CC); \
 	( \
 	  $(DESCRIBE_PKG); \
-	  $(DESCRIBE_CC); \
-	  $(DESCRIBE_MKL) \
+	  $(DESCRIBE_CC) \
 	) > $@
+	$(MODULE_LOAD_MKL); \
+	if test -n "$${MKL_ROOT}"; then \
+	  $(DESCRIBE_MKL) >> $@; \
+	fi
 
 LICENSE: $(SRC_DIRS)
 	$(CHECK_LICENSE_FILES)
 	echo GPL > $@
 
 build: $(SRC_DIRS)
+	# NOTE: per R doc, we compile w/out --with-blas if MKL missing
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
