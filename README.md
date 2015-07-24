@@ -23,8 +23,9 @@ development machine.
 ## Dependencies
 
 yum install tk-devel
-Not needed by R itself; however, a number of R modules depend on R having been
-compiled with the tk-devel package present.
+
+tk-devel is not needed by R itself; however, a number of R modules depend on R
+having been compiled with it present.
 
 The sdsc-roll must be installed on the build machine, since the build process
 depends on make include files provided by that roll.
@@ -33,10 +34,11 @@ The roll sources assume that modulefiles provided by SDSC compiler
 rolls are available, but it will build without them as long as the environment
 variables they provide are otherwise defined.
 
-The build process requires the MKL libraries and assumes that the mkl
-modulefile provided by the SDSC mkl-roll or intel-rollis available.  It will build without
-the modulefile as long as the environment variables it provides are otherwise
-defined.
+If they are present, the build process uses the Intel MKL libraries and assumes
+that the mkl modulefile provided by the SDSC mkl-roll or intel-roll is
+available.  It will build without the modulefile as long as the environment
+variables it provides are otherwise defined.  If MKL is not present, the build
+process uses R's internal BLAS implementation.
 
 
 ## Building
