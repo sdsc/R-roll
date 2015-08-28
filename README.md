@@ -46,6 +46,7 @@ process uses R's internal BLAS implementation.
 To build the R-roll, execute this on a Rocks development machine
 (e.g., a frontend or development appliance):
 
+
 ```shell
 % make 2>&1 | tee build.log
 ```
