@@ -35,7 +35,7 @@ rolls are available, but it will build without them as long as the environment
 variables they provide are otherwise defined.
 
 If they are present, the build process uses the Intel MKL libraries and assumes
-that the mkl modulefile provided by the SDSC mkl-roll or intel-roll is
+that the mkl modulefile provided by the SDSC intel-roll is
 available.  It will build without the modulefile as long as the environment
 variables it provides are otherwise defined.  If MKL is not present, the build
 process uses R's internal BLAS implementation.
