@@ -4,8 +4,8 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-R
-VERSION        = 3.2.1
-RELEASE        = 1
+VERSION        = 3.2.3
+RELEASE        = 0
 PKGROOT        = /opt/R
 
 SRC_SUBDIR     = R
