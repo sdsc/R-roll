@@ -1,5 +1,6 @@
 ifndef ROLLCOMPILER
   ROLLCOMPILER = gnu
+  WITHOUT_MKL = true
 endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
@@ -18,4 +19,4 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 TAR_GZ_PKGS    = $(SOURCE_PKG)
 
-RPM.EXTRAS     = AutoReq:No
+# RPM.EXTRAS     = AutoReq:No

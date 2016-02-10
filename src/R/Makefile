@@ -64,6 +64,13 @@ include $(SDSCDEVEL)/Rules.mk
 
 $(NAME).spec: DESCRIPTION LICENSE
 
+## If building without MKL, add blas and lapack
+ifdef WITHOUT_MKL
+DESCRIBE_MKL = 
+R_CONFIG_EXTRA = --with-blas --with-lapack
+MODULE_LOAD_MKL = echo "building without mkl module"
+endif
+
 DESCRIPTION:
 	$(MODULE_LOAD_CC); \
 	( \
@@ -85,6 +92,7 @@ build: $(SRC_DIRS)
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
 	  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
+	  export CONFIG_OPTS="$${CONFIG_OPTS} $(R_CONFIG_EXTRA)"; \
 	  if test -n "$${MKL_ROOT}"; then \
 	    export MKLLIB=`find $${MKL_ROOT}/lib/* -maxdepth 0 | head -1`; \
 	    export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
