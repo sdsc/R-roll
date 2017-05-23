@@ -96,7 +96,13 @@ build: $(SRC_DIRS)
 	  export CXX=$(CXX); \
 	  export FC=$(FC); \
 	  export F77=$(FC); \
-	  cd $(SOURCE_DIR); \
+          cd $(ZLIB_SOURCE); \
+          ./configure --prefix=$(CURRDIR)/zlib; \
+          make; \
+          make install; \
+          export CPPFLAGS=-I$(CURRDIR)/zlib/include; \
+          export LDFLAGS=-L$(CURRDIR)/zlib/lib; \
+	  cd ../$(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  $(MAKE) \
 	)
@@ -118,4 +124,4 @@ install::
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE zlib
