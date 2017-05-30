@@ -136,6 +136,7 @@ install::
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
 	  $(MAKE) install-tests; \
+          cd ..; \
           cp bzip2/lib/* xz/lib/* pcre/lib/* curl/lib/* $(ROOT)/$(PKGROOT)/lib64/R/lib \
 	)
 	$(PKGROOT_BIND_UMOUNT)
