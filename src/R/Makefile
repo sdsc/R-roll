@@ -112,8 +112,7 @@ build: $(SRC_DIRS)
           make; \
           make install; \
           cd ../$(CURL_DIR); \
-          ./configure --prefix=$(CURDIR)/curl; \
-          make; \
+          ./configure --prefix=$(CURDIR)/curl; \ make; \
           make install; \
           cd ..; \
           mkdir pcre/include/pcre; \
@@ -136,11 +135,12 @@ install::
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
-	  $(MAKE) install-tests \
+	  $(MAKE) install-tests; \
+          cp bzip2/lib/* xz/lib/* pcre/lib/* curl/lib/* $(ROOT)/$(PKGROOT)/libb64/R/lib \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
 	@echo "::: Package $(NAME) install complete :::"
 
 clean::
-	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE zlib bzip xz pcre curl
+	rm -rf $(SOURCE_DIR) DESCRIPTION LICENSE zlib bzip2 xz pcre curl
