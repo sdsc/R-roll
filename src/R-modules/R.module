@@ -4,6 +4,7 @@ module-whatis "Version: VERSION"
 module-whatis "Description: R"
 prepend-path PATH /opt/R/bin
 prepend-path R_LIBS /opt/R/local/lib
+prepend-path LD_LIBRARY_PATH /opt/R/lib64/R/lib
 set dir ""
 if { [ file exists /opt/R/local/lib/mpi ] } {
   set dir [ exec ls /opt/R/local/lib/mpi ]
