@@ -80,7 +80,6 @@ LICENSE: $(SRC_DIRS)
 
 build: $(SRC_DIRS)
 	# NOTE: per R doc, we compile w/out --with-blas if MKL missing
-	patch $(BZIP2_DIR)/Makefile patch-files/Makefile.patch
 	( \
 	  $(MODULE_LOAD_CC); \
 	  $(MODULE_LOAD_MKL); \
@@ -96,29 +95,6 @@ build: $(SRC_DIRS)
 	  export CXX=$(CXX); \
 	  export FC=$(FC); \
 	  export F77=$(FC); \
-          cd $(ZLIB_DIR); \
-          ./configure --prefix=$(CURDIR)/zlib; \
-          make; \
-          make install; \
-          cd ../$(BZIP2_DIR); \
-          make install PREFIX=$(CURDIR)/bzip2; \
-          cd ../$(XZ_DIR); \
-          ./configure --prefix=$(CURDIR)/xz; \
-          make; \
-          make install; \
-          cd ../$(PCRE_DIR); \
-          ./configure --prefix=$(CURDIR)/pcre --enable-utf8; \
-          make; \
-          make install; \
-          cd ../$(CURL_DIR); \
-          ./configure --prefix=$(CURDIR)/curl; \ make; \
-          make install; \
-          cd ..; \
-          mkdir pcre/include/pcre; \
-          cp  pcre/include/pcre.h pcre/include/pcre; \
-          export CPPFLAGS="-I$(CURDIR)/zlib/include -I$(CURDIR)/bzip2/include -I$(CURDIR)/xz/include -I$(CURDIR)/pcre/include -I$(CURDIR)/curl/include"; \
-          export LDFLAGS="-L$(CURDIR)/zlib/lib -L$(CURDIR)/bzip2/lib -L$(CURDIR)/xz/lib -L$(CURDIR)/pcre/lib -L$(CURDIR)/curl/lib"; \
-          export LD_LIBRARY_PATH=$(CURDIR)/zlib/lib:$(CURDIR)/bzip2/lib:$(CURDIR)/xz/lib:$(CURDIR)/pcre/lib:$(CURDIR)/curl/lib:$${LD_LIBRARY_PATH}; \
 	  cd $(SOURCE_DIR); \
 	  ./configure --prefix=$(PKGROOT) $${CONFIG_OPTS}; \
 	  $(MAKE) \
@@ -134,9 +110,7 @@ install::
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
-	  $(MAKE) install-tests; \
-          cd ..; \
-          cp -r bzip2/lib/* xz/lib/* pcre/lib/* curl/lib/* zlib/lib/* $(ROOT)/$(PKGROOT)/lib64/R/lib \
+	  $(MAKE) install-tests \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
