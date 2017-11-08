@@ -5,7 +5,7 @@ COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-R
 VERSION        = 3.4.0
-RELEASE        = 2
+RELEASE        = 3
 PKGROOT        = /opt/R
 
 SRC_SUBDIR     = R
