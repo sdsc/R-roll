@@ -61,6 +61,14 @@ REDHAT.ROOT = $(CURDIR)/../../
 include $(SDSCDEVEL)/Pull.mk
 include $(SDSCDEVEL)/Rules.mk
 
+COMPILERTYPE=gf
+ifeq ("$(COMPILERNAME)", "intel")
+  COMPILERTYPE=intel
+else ifeq ("$(COMPILERNAME)", "pgi")
+  COMPILERTYPE=intel
+endif
+
+
 $(NAME).spec: DESCRIPTION LICENSE
 
 DESCRIPTION:
@@ -86,7 +94,7 @@ build: $(SRC_DIRS)
 	  export CONFIG_OPTS="--enable-R-shlib --enable-threads=posix"; \
 	  if test -n "$${MKLHOME}"; then \
 	    export MKLLIB=$${MKLHOME}/lib/intel64; \
-	    export MKLLINK="-L$${MKLLIB} -lmkl_rt"; \
+	    export MKLLINK="-L$${MKLLIB} -lmkl_$(COMPILERTYPE)_ilp64 -lmkl_$(COMPILERNAME) -lmkl_core -fopenmp -lpthread -lm"; \
 	    export BLAS_LIBS="$${MKLLINK}"; \
 	    export LAPACK_LIBS="$${MKLLINK}"; \
 	    export CONFIG_OPTS="$${CONFIG_OPTS} --with-blas --with-lapack"; \
