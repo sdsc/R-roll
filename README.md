@@ -77,6 +77,16 @@ If the environment variable MKL_ROOT is set either before the build or by the
 ROLLCOMPILER module, the build process will incorporate the Math Kernel
 Libraries into the R installation.
 
+Building the R-roll under Rocks version 6 requires additional system libraries
+that are bundled with an earlier version of the roll sources. To use this
+version, first make a git clone of the R-roll source, then execute the
+following before following the build instructions given above.
+
+```
+cd R-roll
+git checkout ROCKSv6_FINAL
+```
+
 
 ## Installation
 
