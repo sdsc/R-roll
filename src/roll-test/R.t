@@ -40,6 +40,12 @@ SKIP: {
   skip 'R roll not installed', 4 if ! $isInstalled;
   $output = `/bin/bash $TESTFILE.sh 2>&1`;
   like($output, qr/0.*1.*2.*3.*4.*5.*6.*7.*8.*9/, 'Simple R run');
+  $output = `module load R; /bin/echo "require('coda');(.packages())" | R --vanilla 2>&1`;
+  like($output, qr/"coda"/, "coda R module loads");
+  $output = `module load R; /bin/echo "require('lattice');(.packages())" | R --vanilla 2>&1`;
+  like($output, qr/"lattice"/, "lattice R module loads");
+  $output = `module load R; /bin/echo "require('sp');(.packages())" | R --vanilla 2>&1`;
+  like($output, qr/"sp"/, "sp R module loads");
 
   `/bin/ls /opt/modulefiles/applications/R/[0-9]* 2>&1`;
   ok($? == 0, 'R module installed');
