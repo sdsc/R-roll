@@ -110,7 +110,10 @@ install::
 	  $(MODULE_LOAD_CC); \
 	  cd $(SOURCE_DIR); \
 	  $(MAKE) install; \
-	  $(MAKE) install-tests \
+	  $(MAKE) install-tests; \
+	  $(PKGROOT)/bin/R CMD INSTALL --no-clean-on-error ../$(CODA_PKG); \
+	  $(PKGROOT)/bin/R CMD INSTALL --no-clean-on-error ../$(LATTICE_PKG); \
+	  $(PKGROOT)/bin/R CMD INSTALL --no-clean-on-error ../$(SP_PKG) \
 	)
 	$(PKGROOT_BIND_UMOUNT)
 	$(INSTALL_LICENSE_FILES)
