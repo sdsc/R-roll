@@ -3,8 +3,10 @@
 <kickstart>
 
 <description>
-The R Project for Statistical Computing
-http://www.r-project.org
+The R Project for Statistical Computing - http://www.r-project.org
+R coda package - https://cran.r-project.org/web/packages/coda/index.html
+R lattice package - https://cran.r-project.org/web/packages/lattice/index.html
+R sp package - https://cran.r-project.org/web/packages/sp/index.html
 </description>
 
 <copyright>
