@@ -4,7 +4,7 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-R
-VERSION        = 3.5.1
+VERSION        = 3.5.2
 RELEASE        = 0
 PKGROOT        = /opt/R
 
@@ -18,19 +18,19 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 CODA_NAME      = coda
 CODA_SUFFIX    = tar.gz
-CODA_VERSION   = 0.19-1
+CODA_VERSION   = 0.19-2
 CODA_PKG       = $(CODA_NAME)_$(CODA_VERSION).$(CODA_SUFFIX)
 CODA_DIR       = $(CODA_PKG:%.$(CODA_SUFFIX)=%)
 
 LATTICE_NAME   = lattice
 LATTICE_SUFFIX = tar.gz
-LATTICE_VERSION= 0.20-35
+LATTICE_VERSION= 0.20-38
 LATTICE_PKG    = $(LATTICE_NAME)_$(LATTICE_VERSION).$(LATTICE_SUFFIX)
 LATTICE_DIR    = $(LATTICE_PKG:%.$(LATTICE_SUFFIX)=%)
 
 SP_NAME        = sp
 SP_SUFFIX      = tar.gz
-SP_VERSION     = 1.2-7
+SP_VERSION     = 1.3-1
 SP_PKG         = $(SP_NAME)_$(SP_VERSION).$(SP_SUFFIX)
 SP_DIR         = $(SP_PKG:%.$(SP_SUFFIX)=%)
 
