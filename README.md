@@ -22,10 +22,12 @@ development machine.
 
 ## Dependencies
 
-yum install tk-devel
+yum install tk-devel readline-devel
 
 tk-devel is not needed by R itself; however, a number of R modules depend on R
 having been compiled with it present.
+
+readline-devel is needed to build R.
 
 The sdsc-roll must be installed on the build machine, since the build process
 depends on make include files provided by that roll.
@@ -125,5 +127,5 @@ of the roll documentation, binaries and module files. To run the test scripts
 execute the following command(s):
 
 ```shell
-% /root/rolltests/R.t 
+% /root/rolltests/R.t
 ```
