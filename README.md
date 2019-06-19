@@ -127,5 +127,5 @@ of the roll documentation, binaries and module files. To run the test scripts
 execute the following command(s):
 
 ```shell
-% /root/rolltests/R.t 
+% /root/rolltests/R.t
 ```
