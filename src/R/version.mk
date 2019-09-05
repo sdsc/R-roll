@@ -4,7 +4,7 @@ endif
 COMPILERNAME := $(firstword $(subst /, ,$(ROLLCOMPILER)))
 
 NAME           = sdsc-R
-VERSION        = 3.5.2
+VERSION        = 3.6.1
 RELEASE        = 0
 PKGROOT        = /opt/R
 
@@ -18,7 +18,7 @@ SOURCE_DIR     = $(SOURCE_PKG:%.$(SOURCE_SUFFIX)=%)
 
 CODA_NAME      = coda
 CODA_SUFFIX    = tar.gz
-CODA_VERSION   = 0.19-2
+CODA_VERSION   = 0.19-3
 CODA_PKG       = $(CODA_NAME)_$(CODA_VERSION).$(CODA_SUFFIX)
 CODA_DIR       = $(CODA_PKG:%.$(CODA_SUFFIX)=%)
 
